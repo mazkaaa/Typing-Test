@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Typing Test</title>
+    <script>
+        msg = new Array("Practicing with your typing can greatly help your overall computer skills.",
+        "A new computer is sold in the US every hour!",
+        "When do birds migrate from North to South?",
+        "Perplexing phrases, like this one, are tougher to type.")
+        word = 10
+
+
+        function easy(){
+            msg = newArray("Computers are the medium of the future.",
+            "Can you type this phrase rather quickly?",
+            "Who is the President of the US?",
+            "I believe that you can type well!")
+            word = 7;
+        }
+
+        function normal(){
+            msg = new Array("Practicing with your typing can greatly help your overall computer skills.",
+            "A new computer is sold in the US every hour!",
+            "When do birds migrate from North to South?",
+            "Perplexing phrases, like this one, are tough to type.")
+            word = 10
+        }
+
+        function hard(){
+            msg = new Array("If you can correctly, and quickly, type this perplexing sentence, you are one superb typist!",
+            "You are one superb typist if you can correctly, and quickly, type this long phrase.",
+            "I believe you're a good typist, so I believe you will correctly copy this statement!",
+            "Because this is not a fairly simple phrase, could you swiftly, and precisely, copy it?")
+            word = 15
+        }
+
+        function beginType(){
+            randNum = Math.floor((Math.random() * 10)) % 4;
+            msgType = msg[randNum];
+            day = new Date();
+            startType = day.getTime();
+            document.form.given.value = msgType;
+            document.form.typed.focus();
+            document.form.typed.select();
+        }
+
+        function cheatScan(){
+            alert("You cannot copy paste it!");
+            document.form.typed.focus();
+        }
+
+        function stopType(){
+            dayTwo = new Date();
+            endType = dayTwo.getTime();
+            totalTime = ((endType - startType) / 1000)
+            spd = Math.round((word/totalTime) * 60)
+            if (document.form.typed.value == document.form.given.value) {
+            alert("\nYou typed a " + word + " word sentence in "
+            + totalTime + " seconds, a speed of about " + spd + " words per minute!")
+            }
+            else {
+            alert("You made an error, but typed at a speed of " + spd + " words per minute.")
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+    <center>
+        <form name="form">
+            <table border=3 cellspacing=0 cellpadding=0>
+                <tr>
+                    <td>Are you a ...</td>
+                    <td align="center">
+                        <input type="radio" name="sme" value="Beginner" onclick="easy()" id="" checked>Beginner
+                        <input type="radio" name="sme" value="Novice" onclick="normal()" id="">Novice
+                        <input type="radio" name="sme" value="Expert" onclick="hard()" id="">Expert
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <br>
+                        <center>
+                            <input type="button" name="start" value="Start Typing!" onclick="beginType()">
+                        </center>
+                        <textarea name="given" id="" cols=50 rows=5 wrap=on onfocus="cheatScan()"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <center>
+                            <input type="text" name="typed" size=50 id="">
+                            <input type="button" value="Done" name="stop" onclick="stopType()">
+                        </center>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </center>
+    
+</body>
+</html>
